@@ -82,7 +82,7 @@ my-profile/
 - Gmail account (for email)
 
 ### **Step 1: Clone the Repository**
-```bash
+
 git clone https://github.com/Hemanth870-tech/my-portfolio.git
 cd django-portfolio
 
@@ -173,7 +173,7 @@ Click any icon (Docker, Git, Python, etc.) to see detailed info
 Filter by level using Expert/Proficient/Familiar buttons
 Hover for visual feedback
 
-## SCREENSHOTS:
+# SCREENSHOTS:
 1. START:
 ![alt text](image.png)
 2. TERMINAL GAME:
