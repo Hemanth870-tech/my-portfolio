@@ -2,7 +2,6 @@
 
 A full-stack Django portfolio website with custom admin dashboard, authentication system, and interactive features.
 
-![Portfolio Demo](https://via.placeholder.com/800x400/1e293b/ffffff?text=Hemanth+Issai+Portfolio)
 
 ## ✨ Features
 
@@ -173,3 +172,28 @@ Tech Stack Radar
 Click any icon (Docker, Git, Python, etc.) to see detailed info
 Filter by level using Expert/Proficient/Familiar buttons
 Hover for visual feedback
+
+## SCREENSHOTS:
+1. START:
+![alt text](image.png)
+2. TERMINAL GAME:
+![alt text](image-1.png)
+3. EACH PROJECT CONSIST OF ITS OWN CODE LINKS , LIVE LINKS , DOCKER LINKS AND EACH PROJECT CONSIST OF ITS OWN SLUG URL:
+![alt text](image-2.png)
+SLUG URL:
+![alt text](image-3.png)
+4. TECH STACK:
+![alt text](image-4.png)
+5. AS SAME AS PROJECTS, CERTIFICATES ALSO CONSIST OF SLUG:
+![alt text](image-5.png)
+6. DASHBOARD LOGIN , ( ADDING, EDITING,DELETING PROJECTS , CERTIFICATES ):
+![alt text](image-6.png)
+![alt text](image-7.png)
+7. DJANGO-ADMIN-PANEL MODELS:
+![alt text](image-8.png)
+8. EMAIL SENDER:
+![alt text](image-9.png)
+8. DATABSES IN DB_EAVER FOR PROJECTS,CONTACT MESSAGE, CERTIFICATES:
+![alt text](image-10.png) 
+![alt text](image-11.png)
+![alt text](image-12.png)
