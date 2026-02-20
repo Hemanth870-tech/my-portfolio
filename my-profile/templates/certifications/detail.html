@@ -1,0 +1,50 @@
+
+{% load static %}
+
+{% block title %}{{ certification.title }} | Hemanth Issai{% endblock %}
+
+{% block content %}
+<div class="certificate-detail-page">
+    <div class="container">
+        <!-- Back button -->
+        <a href="{% url 'portfolio' %}#certifications" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Certifications
+        </a>
+        
+        <div class="certificate-card">
+            <div class="certificate-header">
+                <div class="certificate-icon">
+                    <i class="{{ certification.icon|default:'fas fa-certificate' }}"></i>
+                </div>
+                <h1>{{ certification.title }}</h1>
+                <h2>{{ certification.organization }}</h2>
+            </div>
+            
+            <div class="certificate-body">
+                <p>{{ certification.description }}</p>
+                
+                {% if certification.issued_date %}
+                <p><strong>Issued:</strong> {{ certification.issued_date|date:"F Y" }}</p>
+                {% endif %}
+                
+                {% if certification.certificate_url %}
+                <a href="{{ certification.certificate_url }}" target="_blank" class="btn primary-btn">
+                    <i class="fas fa-external-link-alt"></i> View Certificate
+                </a>
+                {% endif %}
+                
+                {% if certification.focus_areas %}
+                <div class="focus-areas">
+                    <h3>Focus Areas</h3>
+                    <div class="focus-tags">
+                        {% for focus in certification.focus_list %}
+                        <span class="focus-tag">{{ focus }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
