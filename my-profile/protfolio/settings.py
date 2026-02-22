@@ -26,7 +26,13 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',  # This allows ALL Render subdomains
+    'my-portfolio-yi9y.onrender.com',  # Your specific domain
+]
+
 
 
 # Application definition
@@ -132,3 +138,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+CSRF_TRUSTED_ORIGINS = [
+    'https://my-portfolio-yi9y.onrender.com',
+]
