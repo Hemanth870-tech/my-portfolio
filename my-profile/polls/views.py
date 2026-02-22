@@ -530,8 +530,3 @@ def certification_detail(request, slug):
     certification = get_object_or_404(Certification, slug=slug)
     return render(request, 'certifications/detail.html', {'certification': certification})
 
-def create_admin(request):
-    if not User.objects.filter(username='stark').exists():
-        User.objects.create_superuser('stark', '', '1234')
-        return HttpResponse("✅ Admin user 'stark' created!")
-    return HttpResponse("✅ Admin already exists")

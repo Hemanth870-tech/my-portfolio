@@ -23,7 +23,7 @@ from polls.views import (
     submit_contact, project_detail, certification_detail,
     dashboard, add_project, edit_project, delete_project,
     add_certification, edit_certification, delete_certification,
-    portfolio, about, signup_view, login_view, logout_view, create_admin,
+    portfolio, about, signup_view, login_view, logout_view,
 )
 
 urlpatterns = [
@@ -57,5 +57,4 @@ urlpatterns = [
     
     # Contact
     path('contact/submit/', submit_contact, name='submit_contact'),
-    path('create-admin/', create_admin, name='create_admin'),
 ]
