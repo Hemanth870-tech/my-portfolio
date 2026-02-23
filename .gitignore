@@ -87,6 +87,3 @@ my-profile/db.sqlite3
 my-profile/*.sqlite3
 my-profile/.env
 
-# Resume (if you have backup copies)
-*.pdf
-!static/documents/Hemanth_Issai_Resume.pdf
