@@ -252,7 +252,7 @@ Cloud & DevOps Engineer
     
     return JsonResponse({
         'success': False,
-        'message': 'Invalid request'
+        'message': 'message reached to hemanth , he will notify yu shortly through mail.'
     })
 
 # ========== HELPER FUNCTION ==========
