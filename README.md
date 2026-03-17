@@ -86,7 +86,7 @@ my-profile/
 - Gmail account (for email)
 
 ### **Step 1: Clone the Repository**
-```bash
+bash
 git clone https://github.com/Hemanth870-tech/my-portfolio.git
 cd django-portfolio
 
