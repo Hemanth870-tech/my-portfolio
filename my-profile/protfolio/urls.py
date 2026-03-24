@@ -58,4 +58,5 @@ urlpatterns = [
     # Contact
     path('contact/submit/', submit_contact, name='submit_contact'),
     path('create-admin/', create_admin, name='create_admin'),
+    path('run-migrations/', run_migrations, name='run_migrations'),
 ]
