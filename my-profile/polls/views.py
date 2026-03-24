@@ -529,3 +529,16 @@ def project_detail(request, slug):
 def certification_detail(request, slug):
     certification = get_object_or_404(Certification, slug=slug)
     return render(request, 'certifications/detail.html', {'certification': certification})
+
+import traceback
+from django.http import HttpResponse
+from django.db import connection
+
+def debug_health(request):
+    try:
+        # Test database
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+        return HttpResponse("✅ Database OK", content_type="text/plain")
+    except Exception as e:
+        return HttpResponse(f"❌ Database error: {e}\n\n{traceback.format_exc()}", content_type="text/plain")
