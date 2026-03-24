@@ -529,25 +529,3 @@ def project_detail(request, slug):
 def certification_detail(request, slug):
     certification = get_object_or_404(Certification, slug=slug)
     return render(request, 'certifications/detail.html', {'certification': certification})
-
-# ========== TEMPORARY: CREATE ADMIN USER ==========
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-
-def create_admin(request):
-    if not User.objects.filter(username='stark').exists():
-        User.objects.create_superuser('stark', '', '1234')
-        return HttpResponse("✅ Admin user 'stark' created! You can now login.")
-    return HttpResponse("✅ Admin already exists.")
-from django.http import HttpResponse
-from django.core.management import call_command
-from io import StringIO
-
-def run_migrations(request):
-    """Temporary view to run database migrations"""
-    out = StringIO()
-    try:
-        call_command('migrate', stdout=out, interactive=False)
-        return HttpResponse(f"<pre>✅ Migrations completed!\n\n{out.getvalue()}</pre>")
-    except Exception as e:
-        return HttpResponse(f"<pre>❌ Error: {str(e)}</pre>")
