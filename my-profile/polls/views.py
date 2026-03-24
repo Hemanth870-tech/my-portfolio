@@ -539,3 +539,15 @@ def create_admin(request):
         User.objects.create_superuser('stark', '', '1234')
         return HttpResponse("✅ Admin user 'stark' created! You can now login.")
     return HttpResponse("✅ Admin already exists.")
+from django.http import HttpResponse
+from django.core.management import call_command
+from io import StringIO
+
+def run_migrations(request):
+    """Temporary view to run database migrations"""
+    out = StringIO()
+    try:
+        call_command('migrate', stdout=out, interactive=False)
+        return HttpResponse(f"<pre>✅ Migrations completed!\n\n{out.getvalue()}</pre>")
+    except Exception as e:
+        return HttpResponse(f"<pre>❌ Error: {str(e)}</pre>")
