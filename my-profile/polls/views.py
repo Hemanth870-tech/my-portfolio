@@ -530,39 +530,20 @@ def certification_detail(request, slug):
     certification = get_object_or_404(Certification, slug=slug)
     return render(request, 'certifications/detail.html', {'certification': certification})
 
+from django.core.management import call_command
+from io import StringIO
 
-import traceback
-from django.http import HttpResponse
-from django.db import connection
-
-def debug_health(request):
+def run_migrations(request):
+    out = StringIO()
     try:
-        # Test database
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT 1")
-        return HttpResponse("✅ Database OK", content_type="text/plain")
+        call_command('migrate', stdout=out, interactive=False)
+        return HttpResponse(f"<pre>✅ Migrations completed!\n\n{out.getvalue()}</pre>")
     except Exception as e:
-        return HttpResponse(f"❌ Database error: {e}\n\n{traceback.format_exc()}", content_type="text/plain")
-def test_home(request):
-    try:
-        projects = Project.objects.filter(featured=True).order_by('order')
-        certifications = Certification.objects.filter(featured=True).order_by('order')
-        
-        return HttpResponse(f"""
-        Projects count: {projects.count()}<br>
-        Certifications count: {certifications.count()}<br>
-        Projects queried: {projects.query}<br>
-        Certifications queried: {certifications.query}
-        """)
-    except Exception as e:
-        import traceback
-        return HttpResponse(f"Error: {e}<br><pre>{traceback.format_exc()}</pre>")
+        return HttpResponse(f"<pre>❌ Error: {e}</pre>")
 
-from django.template import loader, TemplateDoesNotExist
-
-def check_template(request):
-    try:
-        template = loader.get_template('portfolio.html')
-        return HttpResponse(f"✅ Template found at: {template.origin.name}")
-    except TemplateDoesNotExist:
-        return HttpResponse("❌ Template 'portfolio.html' not found")
+def create_admin(request):
+    from django.contrib.auth.models import User
+    if not User.objects.filter(username='stark').exists():
+        User.objects.create_superuser('stark', '', '1234')
+        return HttpResponse("✅ Admin user 'stark' created!")
+    return HttpResponse("✅ Admin already exists.")
