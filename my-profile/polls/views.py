@@ -530,6 +530,7 @@ def certification_detail(request, slug):
     certification = get_object_or_404(Certification, slug=slug)
     return render(request, 'certifications/detail.html', {'certification': certification})
 
+
 import traceback
 from django.http import HttpResponse
 from django.db import connection
@@ -542,3 +543,26 @@ def debug_health(request):
         return HttpResponse("✅ Database OK", content_type="text/plain")
     except Exception as e:
         return HttpResponse(f"❌ Database error: {e}\n\n{traceback.format_exc()}", content_type="text/plain")
+def test_home(request):
+    try:
+        projects = Project.objects.filter(featured=True).order_by('order')
+        certifications = Certification.objects.filter(featured=True).order_by('order')
+        
+        return HttpResponse(f"""
+        Projects count: {projects.count()}<br>
+        Certifications count: {certifications.count()}<br>
+        Projects queried: {projects.query}<br>
+        Certifications queried: {certifications.query}
+        """)
+    except Exception as e:
+        import traceback
+        return HttpResponse(f"Error: {e}<br><pre>{traceback.format_exc()}</pre>")
+
+from django.template import loader, TemplateDoesNotExist
+
+def check_template(request):
+    try:
+        template = loader.get_template('portfolio.html')
+        return HttpResponse(f"✅ Template found at: {template.origin.name}")
+    except TemplateDoesNotExist:
+        return HttpResponse("❌ Template 'portfolio.html' not found")
